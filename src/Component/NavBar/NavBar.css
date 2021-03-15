@@ -1,0 +1,10 @@
+.navbar-style{
+    border-bottom: 1px solid lightgray;
+}
+.nav-link{
+    margin:0 20px;
+}
+.logo{
+    font-weight: bolder;
+    color: #2bde8c;
+}

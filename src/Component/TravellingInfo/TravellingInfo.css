@@ -1,0 +1,42 @@
+.arrival{
+    font-weight: bold;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px rgb(230, 228, 228);
+}
+.arrival input{
+    text-decoration: none;
+    border: none;
+}
+.guest{
+    font-weight: bold;
+    padding: 5% 5%;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px rgb(230, 228, 228);
+}
+.guest-header{
+    padding-bottom: 2%;
+    border-bottom: 1px solid lightgray;
+}
+.guest .row{
+    padding-bottom: 5%;
+}
+.people-count-btn{
+    margin: 0 5%;
+    font-weight:bold;
+    border: none;
+    background-color: white;
+}
+.outline-btn{
+    margin-left: 70%;
+    border: 1px solid #1cd68f;
+    border-radius: 10px;
+    padding: 1% 7%;
+    color: #1cd68f;
+    font-weight: bold;
+    background: transparent;
+}
+.outline-btn:hover{
+    border: 2px solid #1cd68f;
+    background-color: #1cd68f;
+    color: white;
+}

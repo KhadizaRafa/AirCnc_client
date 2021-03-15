@@ -1,0 +1,20 @@
+@mixin buttonStyle($border_radius) {
+background: linear-gradient(to right, #1cd68f, #90fa3a);
+border-radius: $border_radius;
+color: white;
+border: none;
+} 
+.main-button{
+    padding : 0px 20px;
+    @include buttonStyle(30px);
+}
+
+.full-width-button{
+    width: 100%;
+    padding: 3%;
+    @include buttonStyle(5px);
+}
+
+.main-color{
+    color : #1cd68f;
+}

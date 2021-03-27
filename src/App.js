@@ -1,12 +1,27 @@
-
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
 import './App.scss';
+import Accommodation from './Component/Accommodation/Accommodation';
 import Home from './Component/Home/Home';
+import NavBar from "./Component/NavBar/NavBar";
 
 function App() {
   return (
-    <div className="App">
-      <Home/>
-    </div>
+    <Router>
+      <NavBar />
+      <Switch>
+          <Route exact path="/accommodation">
+            <Accommodation/>
+          </Route>
+          <Route exact path="/">
+            <Home />
+          </Route>
+        </Switch>
+    </Router>
   );
 }
 

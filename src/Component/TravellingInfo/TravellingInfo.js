@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
+import { Field, reduxForm } from 'redux-form';
 import './TravellingInfo.css'
 
-const TravellingInfo = () => {
+const TravellingInfo = ({addTravelInfo}) => {
+    
+    
     const [adults, setAdults] = useState(0);
     const [children, setChildren] = useState(0);
     const [babies, setBabies] = useState(0);
@@ -21,6 +24,7 @@ const TravellingInfo = () => {
                 <Form.Group controlId="formGridLocation" className="p-2 arrival">
                     <Form.Label>Location</Form.Label>
                     <Form.Control placeholder="Add city, Landmark or address" />
+                    {/* <Field className="input" name="location" component="input" type="text" placeholder="Add city, Landmark or address"/> */}
                 </Form.Group>
                 <Form.Row className="mt-2 mb-2">
                     <div className="col-md-6">
@@ -82,4 +86,9 @@ const TravellingInfo = () => {
     );
 };
 
-export default TravellingInfo;
+  
+// TravellingInfo = reduxForm({
+//     form: 'traveling-info'
+//   })(TravellingInfo);
+
+  export default TravellingInfo;

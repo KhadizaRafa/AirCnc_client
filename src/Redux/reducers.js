@@ -9,7 +9,7 @@ const travelReducer = (state=initialState, action) =>
     switch (action.type) {
         case ADD_USERS_TRAVEL_INFO:
             return {
-               travelInfo:[...state , action.travelInfo] 
+               travelInfo:[...state.travelInfo , action.travelInfo] 
             }
         default:
             return state;

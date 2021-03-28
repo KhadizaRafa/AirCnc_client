@@ -1,4 +1,4 @@
-import { createStore } from 'redux'
+import { combineReducers, createStore } from 'redux'
 import travelReducer from './reducers'
 import { reducer as formReducer } from 'redux-form'
 

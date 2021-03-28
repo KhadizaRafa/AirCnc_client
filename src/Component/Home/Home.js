@@ -1,20 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import { useHistory } from 'react-router';
 import { addTravelInfo } from '../../Redux/action';
 import Experience from '../Experience/Experience';
-import NavBar from '../NavBar/NavBar';
 import TravellingInfo from '../TravellingInfo/TravellingInfo';
 
-const Home = ({addTravelInfo}) => {
+const Home = ({ addTravelInfo }) => {
+    const [guests, setGuests] = useState(0);
+    let history = useHistory();
+
+    const handleGuest = (adults, babies, children) => {
+        let newGuestCount = adults + children + babies;
+        setGuests(newGuestCount)
+    }
+    const submit = values => {
+        const moment = require('moment')
+        const diffInDays = moment(values.departureDate).diff(moment(values.arrivalDate), 'days');
+        const travelObject = { ...values, guest: guests, numberOfDays:diffInDays };
+        addTravelInfo(travelObject)
+        history.push('/accommodation')
+    }
     return (
         <div>
             <div className="container mt-5">
                 <div className="row">
                     <div className="col-md-4">
-                        <TravellingInfo addTravelInfo={addTravelInfo}/>
+                        <TravellingInfo onSubmit={submit} handleGuest={handleGuest} />
                     </div>
                     <div className="col-md-8">
-                        <Experience/>
+                        <Experience />
                     </div>
                 </div>
             </div>
@@ -24,15 +38,15 @@ const Home = ({addTravelInfo}) => {
 
 const mapStateToProps = (state) => {
     return {
-        travelInfo : state.travelInfo
+        travelInfo: state.travelInfo
     }
 }
 
 const mapDispatchToProps = {
-    addTravelInfo : addTravelInfo
+    addTravelInfo: addTravelInfo
 }
 
 export default connect(
     mapStateToProps,
     mapDispatchToProps,
-  )(Home);
+)(Home);

@@ -3,12 +3,12 @@ import { Button, Form } from 'react-bootstrap';
 import { Field, reduxForm } from 'redux-form';
 import './TravellingInfo.css'
 
-const TravellingInfo = ({addTravelInfo}) => {
-    
-    
+let TravellingInfo = (props) => {
+    const { handleSubmit,handleGuest } = props
     const [adults, setAdults] = useState(0);
     const [children, setChildren] = useState(0);
     const [babies, setBabies] = useState(0);
+  
 
     const increaseCount = (value) => {
         value.match("adults") ? setAdults(adults + 1) : value.match("children") ? setChildren(children + 1) : setBabies(babies + 1)
@@ -16,34 +16,37 @@ const TravellingInfo = ({addTravelInfo}) => {
     const decreaseCount = (value) => {
         value.match("adults") ? setAdults(adults ? adults - 1 : 0) : value.match("children") ? setChildren(children ? children - 1 : 0) : setBabies(babies ? babies - 1 : 0)
     }
-
+ 
     return (
         <section id="travel-info">
             <h5  className="mb-3">Where do you want to go</h5>
-            <Form>
+            <Form onSubmit={handleSubmit}>
                 <Form.Group controlId="formGridLocation" className="p-2 arrival">
                     <Form.Label>Location</Form.Label>
-                    <Form.Control placeholder="Add city, Landmark or address" />
-                    {/* <Field className="input" name="location" component="input" type="text" placeholder="Add city, Landmark or address"/> */}
+                    {/* <Form.Control placeholder="Add city, Landmark or address" /> */}
+                    <Field className="input" name="location" component="input" type="text" placeholder="Add city, Landmark or address"/>
                 </Form.Group>
                 <Form.Row className="mt-2 mb-2">
                     <div className="col-md-6">
                         <Form.Group controlId="formGridArrival" className="p-2 arrival">
                             <small className="text-muted">Arrival</small>
-                            <Form.Control type="date" />
+                            {/* <Form.Control type="date" /> */}
+                            <Field className="input" name="arrivalDate" component="input" type="date"/>
                         </Form.Group>
                     </div>
                     <div className="col-md-6">
                         <Form.Group controlId="formGridDeparture" className="p-2 arrival">
                             <small className="text-muted">Departure</small>
-                            <Form.Control type="date" />
+                            <Field className="input" name="departureDate" component="input" type="date"/>
                         </Form.Group>
                     </div>
                 </Form.Row>
                 <Form.Group controlId="formGridGuest" className="guest">
                     <div className="guest-header">
-                        <small className="text-muted">Guests</small>
-                        <p>2 ADULTS, 1 CHILD</p>
+                        <small className="text-muted d-block">Guests</small>
+                        {adults>0? <small> Adults : {adults}</small> : '' }
+                        {children>0? <small> Children : {children}</small> :''}
+                        {babies>0? <small> Babies : {babies}</small> : '' }
                     </div>
                     <div className="row mt-3">
                         <div className="col-md-8">
@@ -77,18 +80,18 @@ const TravellingInfo = ({addTravelInfo}) => {
                             <button type="button" className="people-count-btn" onClick={() => increaseCount("babies")}>+</button>
                         </div>
                     </div>
-                    <Button type="submit" className="outline-btn">Apply</Button>
+                    <Button className="outline-btn" onClick={()=>handleGuest(adults,children,babies)}>Apply</Button>
+                    {/* <Field className="input" name="guests" component="input" type="text" value={guests}/> */}
                 </Form.Group>
-                
+                <Button type="submit" className="full-width-button">Search</Button>
             </Form>
-            <Button type="submit" className="full-width-button">Search</Button>
+            
         </section>
     );
 };
-
   
-// TravellingInfo = reduxForm({
-//     form: 'traveling-info'
-//   })(TravellingInfo);
+TravellingInfo = reduxForm({
+    form: 'traveling-info'
+  })(TravellingInfo);
 
   export default TravellingInfo;

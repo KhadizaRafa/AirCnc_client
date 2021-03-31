@@ -14,7 +14,12 @@ border: none;
     padding: 3%;
     @include buttonStyle(5px);
 }
-
+.form-border{
+    margin-top: 2%;
+    border: 1px solid lightgray;
+    border-radius:5px;
+    padding: 5%;
+}
 .main-color{
     color : #1cd68f;
 }

@@ -4,19 +4,7 @@ import { Field, reduxForm } from 'redux-form';
 import './TravellingInfo.css'
 
 let TravellingInfo = (props) => {
-    const { handleSubmit,handleGuest } = props
-    const [adults, setAdults] = useState(0);
-    const [children, setChildren] = useState(0);
-    const [babies, setBabies] = useState(0);
-  
-
-    const increaseCount = (value) => {
-        value.match("adults") ? setAdults(adults + 1) : value.match("children") ? setChildren(children + 1) : setBabies(babies + 1)
-    }
-    const decreaseCount = (value) => {
-        value.match("adults") ? setAdults(adults ? adults - 1 : 0) : value.match("children") ? setChildren(children ? children - 1 : 0) : setBabies(babies ? babies - 1 : 0)
-    }
- 
+    const { handleSubmit,handleGuest,increaseCount,decreaseCount,adults,babies,children } = props
     return (
         <section id="travel-info">
             <h5  className="mb-3">Where do you want to go</h5>

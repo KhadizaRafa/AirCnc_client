@@ -6,7 +6,7 @@ import host from '../../images/single-01.png'
 
 const ApartmentCard = () => {
     return (
-        <section>
+        <section id="apartment-card">
             <div className="mb-3">
                 <div className="row">
                     <div className="col-md-1 p-3 m-1">

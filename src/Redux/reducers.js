@@ -1,4 +1,4 @@
-import { ADD_USERS_TRAVEL_INFO } from "./action";
+import { ADD_USERS_TRAVEL_INFO , UPDATE_USERS_TRAVEL_INFO} from "./action";
 
 const initialState = {
     travelInfo: []
@@ -7,10 +7,10 @@ const initialState = {
 const travelReducer = (state=initialState, action) =>
 {
     switch (action.type) {
-        case ADD_USERS_TRAVEL_INFO:
+        case UPDATE_USERS_TRAVEL_INFO:
             return {
-               travelInfo:[...state.travelInfo , action.travelInfo] 
-            }
+                travelInfo:[action.travelInfo] 
+             }
         default:
             return state;
     }

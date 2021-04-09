@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router';
-import { addTravelInfo } from '../../Redux/action';
+import { updateTravelInfo } from '../../Redux/action';
 import Experience from '../Experience/Experience';
 import TravellingInfo from '../TravellingInfo/TravellingInfo';
 
-const Home = ({ addTravelInfo }) => {
+const Home = ({ updateTravelInfo }) => {
     const [guests, setGuests] = useState(0);
     const [adults, setAdults] = useState(0);
     const [children, setChildren] = useState(0);
@@ -24,16 +24,20 @@ const Home = ({ addTravelInfo }) => {
         setGuests(newGuestCount)
     }
     const submit = values => {
+        let date = new Date();
+        const id = Math.floor(date.getTime()/1000.0);
         const moment = require('moment')
         const diffInDays = moment(values.departureDate).diff(moment(values.arrivalDate), 'days');
         const travelObject = {
              ...values,
+             id:id,
              adults:adults,
              babies:babies, 
              children:children, 
              guest: guests, 
-             numberOfDays:diffInDays };
-        addTravelInfo(travelObject)
+             numberOfDays:diffInDays
+            };
+            updateTravelInfo(travelObject)
         history.push('/accommodation')
     }
     return (
@@ -65,7 +69,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = {
-    addTravelInfo: addTravelInfo
+    updateTravelInfo: updateTravelInfo
 }
 
 export default connect(

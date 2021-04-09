@@ -9,7 +9,7 @@ import { faStar } from '@fortawesome/free-solid-svg-icons'
 import ApartmentCard from './ApartmentCard';
 import TourInfoForm from '../TourInfoForm/TourInfoForm';
 
-const Apartment = () => {
+const Apartment = (props) => {
     const { id } = useParams()
     const [apartmentDetail, setApartmentDetail] = useState([])
     const baseUrl = 'http://localhost:5000'
@@ -18,6 +18,7 @@ const Apartment = () => {
             .then(res => res.json())
             .then(data => setApartmentDetail(data[0]))
     }, [])
+
     return (
         <section id="apartment-detail">
             <Row>
@@ -50,12 +51,13 @@ const Apartment = () => {
                         <small>{apartmentDetail.rating}</small>
                     </Col>
                     <Col md={4}>
-                        <TourInfoForm  price={apartmentDetail.price} rating={apartmentDetail.rating}/>
+                        <TourInfoForm/>
                     </Col>
                 </Row>
             </Container>
         </section>
     );
 };
+
 
 export default Apartment;

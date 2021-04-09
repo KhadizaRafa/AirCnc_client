@@ -3,22 +3,25 @@ import { Accordion, Button, Card, ListGroup, ListGroupItem } from 'react-bootstr
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar, faArrowRight, faCaretDown } from '@fortawesome/free-solid-svg-icons'
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router';
 
 const TourInfoForm = (props) => {
     const travelInfo = props.travelInfo.travelInfo[0]
-    const { price, rating } = props
     const cardStyle = {
         borderRadius: "20px",
         boxShadow: "10px 10px 10px lightgray"
     }
+    const  history = useHistory()
+    const handleSubmit = () => {
+        history.push('/reviewTravelInfo/houseRules')
+    }
     return (
         <Card className="p-3" style={cardStyle}>
             <Card.Body>
-                <Card.Title>${price}/ night</Card.Title>
+                <Card.Title>${travelInfo.apartmentPrice}/ night</Card.Title>
                 <Card.Text>
                     <FontAwesomeIcon icon={faStar} size="xs" className="main-color" />
-                    <small> {rating}</small>
+                    <small>{travelInfo.apartmentRating}</small>
                     <small className="d-block font-weight-bold pt-2">Dates</small>
                     <div className="d-flex justify-content-between form-border">
                         <p className="d-inline m-0">{travelInfo.arrivalDate}</p>
@@ -38,8 +41,8 @@ const TourInfoForm = (props) => {
                                 <Accordion.Collapse eventKey="0">
                                     <ListGroup className="list-group-flush">
                                         {travelInfo.adults > 0 ? <ListGroupItem>Adullts : {travelInfo.adults} </ListGroupItem> : ''}
-                                        {travelInfo.babies>0?<ListGroupItem>Babies : {travelInfo.babies}</ListGroupItem> : ''}
-                                        {travelInfo.children>0?<ListGroupItem>Children : {travelInfo.children}</ListGroupItem>: ''}
+                                        {travelInfo.babies > 0 ? <ListGroupItem>Babies : {travelInfo.babies}</ListGroupItem> : ''}
+                                        {travelInfo.children > 0 ? <ListGroupItem>Children : {travelInfo.children}</ListGroupItem> : ''}
                                     </ListGroup>
                                 </Accordion.Collapse>
                             </Card>
@@ -49,8 +52,8 @@ const TourInfoForm = (props) => {
             </Card.Body>
             <ListGroup className="list-group-flush">
                 <ListGroupItem className="d-flex justify-content-between">
-                    <small>${price} x {travelInfo.numberOfDays} nights</small>
-                    <small>${price*travelInfo.numberOfDays}</small>
+                    <small>${travelInfo.apartmentPrice} x {travelInfo.numberOfDays} nights</small>
+                    <small>${travelInfo.apartmentPrice * travelInfo.numberOfDays}</small>
                 </ListGroupItem>
                 <ListGroupItem className="d-flex justify-content-between">
                     <small>Cleaning Fee</small>
@@ -62,11 +65,12 @@ const TourInfoForm = (props) => {
                 </ListGroupItem>
                 <ListGroupItem className="d-flex justify-content-between">
                     <small className="font-weight-bold">Total</small>
-                    <small>${price*travelInfo.numberOfDays+10+21}</small>
+                    <small>${travelInfo.totalTravelCost}</small>
                 </ListGroupItem>
             </ListGroup>
-           <Link to=""><Button className="pt-2 full-width-button">Reserve</Button></Link>
-           <small className="text-center pt-2">You won't be charged yet</small>
+            {/* <Link to="/reviewTravelInfo/houseRules"><Button className="pt-2 full-width-button">Reserve</Button></Link> */}
+            <Button className="pt-2 full-width-button" onClick={handleSubmit}>Reserve</Button>
+            <small className="text-center pt-2">You won't be charged yet</small>
         </Card>
     );
 };
@@ -76,7 +80,6 @@ const mapStateToProps = (state) => {
         travelInfo: state.travelInfo
     }
 }
-
 export default connect(
     mapStateToProps
 )(TourInfoForm);

@@ -1,17 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Col, Row } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import room from '../../images/light-airy.jpg';
 import { useHistory } from 'react-router';
+import { updateTravelInfo } from '../../Redux/action';
+import { connect } from 'react-redux';
 
-const AccommodationCard = ({apartment}) => {
+const AccommodationCard = (props) => {
+    const {updateTravelInfo,apartment} = props
+    const travelInfo = props.travelInfo.travelInfo[0]
+    const [totalTravelCost] = useState(apartment.price*travelInfo.numberOfDays+10+21)
     let history = useHistory();
     const apartment_image = {
         borderRadius: '30px'
     }
-    const handleRoomDetails = (id)=>{
-        history.push(`/apartmentDetails/${id}`)
+    const handleRoomDetails = (apartment_id)=>{
+        const newTravelObject = {
+            ...travelInfo,
+            apartmentId : apartment_id,
+            apartmentPrice : apartment.price,
+            apartmentRating : apartment.rating,
+            totalTravelCost : totalTravelCost
+        };
+        updateTravelInfo(newTravelObject)
+        history.push(`/apartmentDetails/${apartment_id}`)
     }
     return (
         <div onClick={() => handleRoomDetails(apartment._id)}>
@@ -41,4 +54,17 @@ const AccommodationCard = ({apartment}) => {
     );
 };
 
-export default AccommodationCard;
+const mapStateToProps = (state) => {
+    return {
+        travelInfo: state.travelInfo
+    }
+}
+const mapDispatchToProps = {
+    updateTravelInfo: updateTravelInfo
+}
+
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(AccommodationCard);

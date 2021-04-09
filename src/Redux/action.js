@@ -1,8 +1,8 @@
-export const ADD_USERS_TRAVEL_INFO = 'ADD_USERS_TRAVEL_INFO'
+export const UPDATE_USERS_TRAVEL_INFO = 'UPDATE_USERS_TRAVEL_INFO'
 
-export const addTravelInfo = (travelInfo)=>{
+export const updateTravelInfo = (travelInfo)=>{
     return {
-        type: ADD_USERS_TRAVEL_INFO,
+        type: UPDATE_USERS_TRAVEL_INFO,
         travelInfo
     }
 }

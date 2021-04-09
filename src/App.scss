@@ -1,25 +1,38 @@
 @mixin buttonStyle($border_radius) {
-background: linear-gradient(to right, #1cd68f, #90fa3a);
-border-radius: $border_radius;
-color: white;
-border: none;
-} 
-.main-button{
-    padding : 0px 20px;
+    background: linear-gradient(to right, #1cd68f, #90fa3a);
+    border-radius: $border_radius;
+    color: white;
+    border: none;
+}
+.main-button {
+    padding: 0px 20px;
     @include buttonStyle(30px);
 }
 
-.full-width-button{
+.full-width-button {
     width: 100%;
     padding: 3%;
     @include buttonStyle(5px);
 }
-.form-border{
+.normal-button{
+    background-color: #2bde8c;
+    padding: 2%;
+    border-radius: 5px;
+    color: white;
+    border: none;
+}
+.form-border {
     margin-top: 2%;
     border: 1px solid lightgray;
-    border-radius:5px;
+    border-radius: 5px;
     padding: 5%;
 }
-.main-color{
-    color : #1cd68f;
+.bs-example {
+    background: transparent;
+}
+.breadcrumb-item + .breadcrumb-item::before {
+    content: ">";
+}
+.main-color {
+    color: #1cd68f;
 }

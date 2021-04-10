@@ -20,16 +20,26 @@ const Login = () => {
 
 
     const handleGoogleSignIn = () => {
-        const googleProvider = new firebase.auth.GoogleAuthProvider();
-        firebase.auth().signInWithPopup(googleProvider).then(function (result) {
-            const { displayName, email, photoURL } = result.user;
-            const signedInUser = { name: displayName, email, image: photoURL };
-            checkIsAdmin(signedInUser);
-            setLoggedInUser(signedInUser);
-            history.replace(from);
-        }).catch(function (error) {
-            console.log(error)
-        });
+        window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {
+            'size': 'normal',
+            'callback': (response) => {
+              // reCAPTCHA solved, allow signInWithPhoneNumber.
+              // ...
+            },
+            'expired-callback': () => {
+              console.log("error")
+            }
+          });
+        // const googleProvider = new firebase.auth.GoogleAuthProvider();
+        // firebase.auth().signInWithPopup(googleProvider).then(function (result) {
+        //     const { displayName, email, photoURL } = result.user;
+        //     const signedInUser = { name: displayName, email, image: photoURL };
+        //     checkIsAdmin(signedInUser);
+        //     setLoggedInUser(signedInUser);
+        //     history.replace(from);
+        // }).catch(function (error) {
+        //     console.log(error)
+        // });
     }
 
     return (

@@ -5,7 +5,9 @@ import './App.scss';
 import App from './App';
 import { Provider } from 'react-redux';
 import { store } from './Redux/store';
-
+firebase.auth().languageCode = 'it';
+// To apply the default browser preference instead of explicitly setting it.
+// firebase.auth().useDeviceLanguage();
 
 ReactDOM.render(
   <Provider store={store}>

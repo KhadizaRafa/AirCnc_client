@@ -35,7 +35,8 @@ const Home = ({ updateTravelInfo }) => {
              babies:babies, 
              children:children, 
              guest: guests, 
-             numberOfDays:diffInDays
+             numberOfDays:diffInDays,
+             email:''
             };
             updateTravelInfo(travelObject)
         history.push('/accommodation')

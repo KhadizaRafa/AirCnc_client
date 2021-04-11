@@ -4,6 +4,7 @@ import masterCard from '../../images/masterCard.png';
 import visa from '../../images/visa.jpg'
 import amex from '../../images/1200px-American_Express_logo_(2018).svg.png'
 import paypal from '../../images/paypal_mb8k.png'
+import { Link } from 'react-router-dom';
 
 const Payment = () => {
     const [validated, setValidated] = useState(false);
@@ -100,7 +101,9 @@ const Payment = () => {
                         </Row>
                     </Col>
                     <div className="d-flex justify-content-end">
-                        <Button type="submit" className="normal-button">Continue to pay</Button>
+                        <Link to="/user-profile" variant="button"  className="normal-button">
+                            Continue to pay
+                        </Link>
                     </div>
                 </Form.Group>
             </fieldset>

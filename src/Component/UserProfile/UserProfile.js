@@ -5,7 +5,7 @@ import { useHistory } from 'react-router';
 import { useAuth } from '../Authentication/Contexts/AuthContext'
 
 const UserProfile = (props) => {
-    const travelInfo = props.travelInfo.travelInfo[0]
+     
     const [apartmentDetail, setApartmentDetail] = useState([])
     const { currentUser } = useAuth();
     const history = useHistory()

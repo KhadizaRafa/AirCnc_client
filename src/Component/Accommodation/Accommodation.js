@@ -6,7 +6,7 @@ import AccommodationCard from './AccommodationCard';
 const Accommodation = (props) => {
     const travelInfo = props.travelInfo.travelInfo[0]
     const [apartments,setApartments] = useState([])
-    const baseUrl = 'http://localhost:5000'
+    const baseUrl = 'https://mighty-woodland-88182.herokuapp.com'
     useEffect(() =>{
         fetch(`${baseUrl}/allApartments`)
         .then(res => res.json())

@@ -12,7 +12,7 @@ import TourInfoForm from '../TourInfoForm/TourInfoForm';
 const Apartment = (props) => {
     const { id } = useParams()
     const [apartmentDetail, setApartmentDetail] = useState([])
-    const baseUrl = 'http://localhost:5000'
+    const baseUrl = 'https://mighty-woodland-88182.herokuapp.com'
     useEffect(() => {
         fetch(`${baseUrl}/apartmentDetails/${id}`)
             .then(res => res.json())
@@ -44,14 +44,16 @@ const Apartment = (props) => {
                             </div>
                             <hr />
                         </div>
-                        <ApartmentCard/>
-                        <p className="text-muted">{apartmentDetail.description}</p>
-                        <h5>Reviews</h5>
-                        <FontAwesomeIcon icon={faStar} size="xs" className="main-color" />
-                        <small>{apartmentDetail.rating}</small>
+                        <ApartmentCard />
+                        <div>
+                            <p className="text-muted">{apartmentDetail.description}</p>
+                            <h5>Reviews</h5>
+                            <FontAwesomeIcon icon={faStar} size="xs" className="main-color" />
+                            <small>{apartmentDetail.rating}</small>
+                        </div>
                     </Col>
                     <Col md={4}>
-                        <TourInfoForm/>
+                        <TourInfoForm />
                     </Col>
                 </Row>
             </Container>

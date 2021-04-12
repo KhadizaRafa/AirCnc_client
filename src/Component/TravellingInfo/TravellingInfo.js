@@ -4,28 +4,26 @@ import { Field, reduxForm } from 'redux-form';
 import './TravellingInfo.css'
 
 let TravellingInfo = (props) => {
-    const { handleSubmit,handleGuest,increaseCount,decreaseCount,adults,babies,children } = props
+    const { handleSubmit,handleGuest,increaseCount,decreaseCount,adults,babies,children,guests } = props
     return (
         <section id="travel-info">
             <h5  className="mb-3">Where do you want to go</h5>
             <Form onSubmit={handleSubmit}>
                 <Form.Group controlId="formGridLocation" className="p-2 arrival">
                     <Form.Label>Location</Form.Label>
-                    {/* <Form.Control placeholder="Add city, Landmark or address" /> */}
-                    <Field className="input" name="location" component="input" type="text" placeholder="Add city, Landmark or address"/>
+                    <Field className="input" name="location" component="input" type="text" placeholder="Add city, Landmark or address" required/>
                 </Form.Group>
                 <Form.Row className="mt-2 mb-2">
                     <div className="col-md-6">
                         <Form.Group controlId="formGridArrival" className="p-2 arrival">
                             <small className="text-muted">Arrival</small>
-                            {/* <Form.Control type="date" /> */}
-                            <Field className="input" name="arrivalDate" component="input" type="date"/>
+                            <Field className="input" name="arrivalDate" component="input" type="date" required/>
                         </Form.Group>
                     </div>
                     <div className="col-md-6">
                         <Form.Group controlId="formGridDeparture" className="p-2 arrival">
                             <small className="text-muted">Departure</small>
-                            <Field className="input" name="departureDate" component="input" type="date"/>
+                            <Field className="input" name="departureDate" component="input" type="date" required/>
                         </Form.Group>
                     </div>
                 </Form.Row>
@@ -69,9 +67,8 @@ let TravellingInfo = (props) => {
                         </div>
                     </div>
                     <Button className="outline-btn" onClick={()=>handleGuest(adults,children,babies)}>Apply</Button>
-                    {/* <Field className="input" name="guests" component="input" type="text" value={guests}/> */}
                 </Form.Group>
-                <Button type="submit" className="full-width-button">Search</Button>
+                {guests > 0  && <Button type="submit" className="full-width-button">Search</Button>}
             </Form>
             
         </section>

@@ -52,7 +52,8 @@ const Home = ({ updateTravelInfo }) => {
                              decreaseCount={decreaseCount}
                              adults={adults}
                              children={children}
-                             babies={babies}/>
+                             babies={babies}
+                             guests={guests}/>
                     </div>
                     <div className="col-md-8">
                         <Experience />

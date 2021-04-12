@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Accordion, Button, Card, ListGroup, ListGroupItem } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar, faArrowRight, faCaretDown } from '@fortawesome/free-solid-svg-icons'
@@ -7,10 +7,18 @@ import { useHistory } from 'react-router';
 
 const TourInfoForm = (props) => {
     const travelInfo = props.travelInfo.travelInfo[0]
+    const {reserveBtn} = props
+    const [apartmentDetail, setApartmentDetail] = useState([])
     const cardStyle = {
         borderRadius: "20px",
         boxShadow: "10px 10px 10px lightgray"
     }
+    const baseUrl = 'https://mighty-woodland-88182.herokuapp.com'
+    useEffect(() => {
+        fetch(`${baseUrl}/apartmentDetails/${travelInfo.apartmentId}`)
+            .then(res => res.json())
+            .then(data => setApartmentDetail(data[0]))
+    }, [])
     const  history = useHistory()
     const handleSubmit = () => {
         history.push('/reviewTravelInfo/houseRules')
@@ -18,10 +26,10 @@ const TourInfoForm = (props) => {
     return (
         <Card className="p-3" style={cardStyle}>
             <Card.Body>
-                <Card.Title>${travelInfo.apartmentPrice}/ night</Card.Title>
+                <Card.Title>${apartmentDetail.price}/ night</Card.Title>
                 <Card.Text>
                     <FontAwesomeIcon icon={faStar} size="xs" className="main-color" />
-                    <small>{travelInfo.apartmentRating}</small>
+                    <small>{apartmentDetail.rating}</small>
                     <small className="d-block font-weight-bold pt-2">Dates</small>
                     <div className="d-flex justify-content-between form-border">
                         <p className="d-inline m-0">{travelInfo.arrivalDate}</p>
@@ -52,8 +60,8 @@ const TourInfoForm = (props) => {
             </Card.Body>
             <ListGroup className="list-group-flush">
                 <ListGroupItem className="d-flex justify-content-between">
-                    <small>${travelInfo.apartmentPrice} x {travelInfo.numberOfDays} nights</small>
-                    <small>${travelInfo.apartmentPrice * travelInfo.numberOfDays}</small>
+                    <small>${apartmentDetail.price} x {travelInfo.numberOfDays} nights</small>
+                    <small>${apartmentDetail.price * travelInfo.numberOfDays}</small>
                 </ListGroupItem>
                 <ListGroupItem className="d-flex justify-content-between">
                     <small>Cleaning Fee</small>
@@ -68,9 +76,9 @@ const TourInfoForm = (props) => {
                     <small>${travelInfo.totalTravelCost}</small>
                 </ListGroupItem>
             </ListGroup>
-            {/* <Link to="/reviewTravelInfo/houseRules"><Button className="pt-2 full-width-button">Reserve</Button></Link> */}
-            <Button className="pt-2 full-width-button" onClick={handleSubmit}>Reserve</Button>
-            <small className="text-center pt-2">You won't be charged yet</small>
+            {!reserveBtn && 
+                <Button className="pt-2 full-width-button" onClick={handleSubmit}>Reserve</Button>}
+                <small className="text-center pt-2">You won't be charged yet</small>
         </Card>
     );
 };

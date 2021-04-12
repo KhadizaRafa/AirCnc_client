@@ -30,7 +30,7 @@ const ReviewTravelInfo = () => {
                     </div>
                 </Col>
                 <Col md={4}>
-                    <TourInfoForm />
+                    <TourInfoForm reserveBtn={true} />
                 </Col>
             </Row>
         </Container>

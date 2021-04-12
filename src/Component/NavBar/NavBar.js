@@ -23,7 +23,7 @@ const NavBar = () => {
         <div className="navbar-style">
             <div className="container">
                 <Navbar expand="lg">
-                    <Navbar.Brand href="#home">
+                    <Navbar.Brand href="/">
                         <h1 className="logo">Aircnc</h1>
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />

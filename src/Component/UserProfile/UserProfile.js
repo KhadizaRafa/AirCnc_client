@@ -9,8 +9,7 @@ const UserProfile = (props) => {
     const [apartmentDetail, setApartmentDetail] = useState([])
     const { currentUser } = useAuth();
     const history = useHistory()
-    const numberOfDays = travelInfo.numberOfDays == 0? 1 : travelInfo.numberOfDays
-    const baseUrl = 'http://localhost:5000'
+    const baseUrl = 'https://mighty-woodland-88182.herokuapp.com'
 
     useEffect(() => {
         fetch(`${baseUrl}/apartmentDetails/${travelInfo.apartmentId}`)
@@ -62,7 +61,7 @@ const UserProfile = (props) => {
                         <td>{travelInfo.departureDate}</td>
                         <td>{travelInfo.numberOfDays}</td>
                         <td>$ {apartmentDetail.price}</td>
-                        <td>$ {apartmentDetail.price * numberOfDays}</td>
+                        <td>$ {apartmentDetail.price * travelInfo.numberOfDays==0?1:travelInfo.numberOfDays}</td>
                     </tr>
                     <tr>
                         <td rowSpan="2">Other Charges</td>

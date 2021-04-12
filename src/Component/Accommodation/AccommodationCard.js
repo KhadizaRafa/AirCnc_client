@@ -15,19 +15,23 @@ const AccommodationCard = (props) => {
     const apartment_image = {
         borderRadius: '30px'
     }
+    const pointerStyle = {
+        cursor: 'pointer'
+    }
     const handleRoomDetails = (apartment_id)=>{
         const newTravelObject = {
             ...travelInfo,
             apartmentId : apartment_id,
-            apartmentPrice : apartment.price,
-            apartmentRating : apartment.rating,
+            // apartmentName : apartment.name,
+            // apartmentPrice : apartment.price,
+            // apartmentRating : apartment.rating,
             totalTravelCost : totalTravelCost
         };
         updateTravelInfo(newTravelObject)
         history.push(`/apartmentDetails/${apartment_id}`)
     }
     return (
-        <div onClick={() => handleRoomDetails(apartment._id)}>
+        <div onClick={() => handleRoomDetails(apartment._id)} style={pointerStyle}>
         <Row className="pt-2"> 
             <Col md={4}>
                 <img src={room} alt={apartment.image} className="w-100 pt-2" style={apartment_image}/>
